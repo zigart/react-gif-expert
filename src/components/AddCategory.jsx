@@ -1,7 +1,7 @@
-import { useState } from 'react';
-
+import { useState } from "react";
+import Proptypes from "prop-types";
 export const AddCategory = ({ onNewCategory }) => {
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const onInputChange = ({ target }) => {
     setInputValue(target.value);
   };
@@ -13,11 +13,20 @@ export const AddCategory = ({ onNewCategory }) => {
     if (newInputValue.length <= 1) return;
 
     onNewCategory(newInputValue);
-    setInputValue('');
+    setInputValue("");
   };
   return (
-    <form onSubmit={onSubmit}>
-      <input type="text" placeholder="Buscar gifs" value={inputValue} onChange={onInputChange}></input>
+    <form aria-label="form" onSubmit={onSubmit}>
+      <input
+        type="text"
+        placeholder="Buscar gifs"
+        value={inputValue}
+        onChange={onInputChange}
+      ></input>
     </form>
   );
+};
+
+AddCategory.prototype = {
+  onNewCategory: Proptypes.func.isRequired,
 };
